@@ -38,3 +38,5 @@ ehthumbs.db
 $RECYCLE.BIN/
 force-app/main/default/classes/acountcontroller.cls
 force-app/main/default/classes/acountcontroller.cls-meta.xml
+force-app/main/default/classes/text.cls
+force-app/main/default/classes/text.cls-meta.xml
