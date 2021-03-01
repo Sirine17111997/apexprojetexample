@@ -1,17 +1,13 @@
-@RestResource(urlMapping='/Accounts/*/Contacts')
-global  class AccountManager {
-    public AccountManager() {
-
-    }
-    @HttpGet 
-    global static Account getAccountById() {
-        RestRequest request = RestContext.request;
-        // grab the AccountId 
-        String AccountId = request.requestURI.substringBetween('Accounts/','/Contacts');
-         System.debug(AccountId);
-        Account result =  [SELECT Id,Name,(SELECT Id,Name FROM Contacts)
-                        FROM Account
-                        WHERE Id = :AccountId LIMIT 1];
-        return result;
+@RestResource(urlMapping='/Accounts/*/contacts')
+global with Sharing class AccountManager {
+   @httpGet
+    global static Account getAccount(){
+        
+         RestRequest request=RestContext.request;
+        System.debug('aaaaaaaaaaaatest'+request.requestURI);
+         String accid= request.requestURI.substringBetween('Accounts/','/contacts');
+        System.debug('aaaaaaaaaaaatest '+request.requestURI.substringBetween('Accounts/','/contacts'));
+         Account acc=[Select id,name,(Select id, name from Contacts) from account where id=:accid];
+        return acc;
     }
 }
