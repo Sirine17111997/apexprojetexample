@@ -1,5 +1,5 @@
 @RestResource(urlMapping='/Accounts/*/Contacts')
-global with sharing class AccountManager {
+global  class AccountManager {
     public AccountManager() {
 
     }
@@ -9,7 +9,7 @@ global with sharing class AccountManager {
         // grab the AccountId 
         String AccountId = request.requestURI.substringBetween('Accounts/','/Contacts');
          System.debug(AccountId);
-        Case result =  [SELECT Id,Name,(SELECT Id,Name FROM Contacts)
+        Account result =  [SELECT Id,Name,(SELECT Id,Name FROM Contacts)
                         FROM Account
                         WHERE Id = :AccountId LIMIT 1];
         return result;

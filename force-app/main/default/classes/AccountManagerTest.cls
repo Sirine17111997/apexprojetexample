@@ -6,19 +6,19 @@ private  class AccountManagerTest {
     @isTest static void testGetAccountById() {
         Account objectAccount = new Account(Name='Test Account');
         insert(objectAccount);
-        Contact Objecontact = new Contact(Name='Test Contact' , AccountId=objectAccount.Id );
+        Contact Objecontact = new Contact( LastName='Test Contact' , AccountId=objectAccount.Id );
                 // Set up a test request
+        insert (Objecontact);
         RestRequest request = new RestRequest();
         Id recordId = objectAccount.Id;
-        request.requestUri =
-            'https://yourInstance.salesforce.com/services/apexrest/Accounts/'+ recordId +'/Contacts';
+        request.requestUri = 'https://yourInstance.salesforce.com/services/apexrest/Accounts/'+ recordId +'/Contacts';
     
         request.httpMethod = 'GET';
         RestContext.request = request;
         // Call the method to test
-        Case thisAccount = AccountManager.getAccountById();
+        Account thisAccount = AccountManager.getAccountById();
         // Verify results
-        System.assert(thisCase != null);
+        System.assert( thisAccount!= null);
         System.assertEquals('Test record', thisAccount.Name);
     }
 }
